@@ -1,0 +1,101 @@
+Types of Learning:
+- Supervised Learning:
+    - Most common
+    -Given Labeled data and a task
+    -Example was with the titanic data science and ML project
+
+-Unsupervised Learning
+    - Given Labeled data
+    - Told to find trends and patterns within the data(no task is given)
+    - example: understanding voting patterns
+
+- Reinforced Learning
+    - Given labeled data and a certain set of rules
+    - given a task(win or lose) and the model must try to accomplish the task within the rules given
+    -example: computer learning how to play chess
+
+
+Recap of Linear Regression and Mean Squared Error:
+- linear Regression:
+    - y= wx + b <-- w means weight and b means bias
+        - weight changes among nodes, bias changes amongst hidden layers
+    - cost: vertical distance between a y-val at a data pt and y-val at the line of best fit(prediction y-val(or y with carrot on top))
+    - loss: sum of the cost
+    - Mean squared error: average of the (loss)^2
+        - Formula in Definition and Basic Properties section: https://en.wikipedia.org/wiki/Mean_squared_error
+    -global minimum: represents line of best fit with the lowest loss
+
+Deep learning Hidden Layers
+- First step is develop a linear regression equation(y= wx + b). Afterwards at the first hidden node, the y values are then coverted to z through the process of non-linearity
+- New equation is created between node 1 and node 2 --> (y2 = w(z1) + b)
+    - as the data is processed through activation functions(such as sigmoid function discussed below), the w(weight) will change
+- This process repeats for subsequent hidden nodes within the model
+    - between nodes linear regression takes place
+    - at nodes the linear regression equation is manipulated using a activation function that is non-linear
+Non- linearity:
+    - Basic one used is Sigmoid(activation function): 
+        - Image: https://www.ecosia.org/images?q=sigmoid%20non%20linearity#id=1C5E580C5508846409F4E7F69B96FF12E2E47521
+        - converts y(from the line of best fit) to another number that is between 0 and 1
+        - activation functions are NON LINEAR!!!
+
+
+Multiple Layers:
+- If there are multiple independent variables, the nodes will take the sum of the each linear regression(sum of the y values) of each input and then afterwards use the activation function to get the new set of inputs
+
+Forward vs Backward Propagation:
+- Forward Propagation
+    - Purpose:
+        - test the weights(slope) and biases(y-intercept)
+        - what are the losses with different weights and biases
+
+- Backwards Propagation
+    - Purpose
+        - Used to update the weight and the bias in order to further reduce loss. The new weight and bias is again tested through forward propagation
+
+- Epoch: 1 Epoch = 1 forward and backward propagation
+
+Overfitting vs Underfitting(Bias and Variance):
+- When there is "high bias" with the model, this means that the model is under-fitting. In other words, the model is a high Mean squared error. 
+    - low test data accuracy and low train data accuracy
+    - How to reduce bias?
+        - Increase number of complexities in neural network(such as adding more nodes or hidden layers)
+        - Increase the number of epochs
+
+-When there is "high variance" with the model, this means that the model is overfitting. This is when the model nearly 0 loss but tends to not respond to new data.
+    - high training accuracy and low test data accuracy(possibly too many forward and backwards propagation)
+    - How to reduce variance?
+        - Decrease complexity to model
+        - Add more diverse set of data
+            - can also add "augment data"
+                - Basically supplementing data
+			- An example is when you are developing a smart home system
+				- data: voices <-- This can be augmented by adding delays, changing the tone, etc
+			- Image Classification: cutting parts of the image, change lighting, change overall color, add blurriness, etc
+        - Add "dropout" to layer
+            - Dropout: randomly removing a percentage of nodes from a forward propagation pass. Will be removed for that particular forward propagation pass only(nodes chosen to drop out are usually randomly chosen)
+                - Dropout rate: percentage of nodes to remove
+
+
+Hyperparameters
+	- Number of Hidden Layers
+	- Number of nodes in a hidden layer
+	- Number of epochs
+	- Learning Rate:
+		- High learning rate means that the weights and biases are updated more often while low learning rate is the opposite of that
+		- Learning rate decay: start off with high learning rate but as the computer runs through more and more epochs, the learning rate gradually decreases.
+	- Batch size: Basically how much data do we use during one set of forward and backwards propagation
+	- Activation Function
+		- Sigmoid: Useful if output is either 0 or 1
+	- Backwards Propagation technique: 
+		- Gradient Decent: Looks for where the loss is decreasing. When the computer sees that the loss is starting to increase, it knows it has found the model with the lowest loss(This is impacted by learning rate).
+	- Regularization techniques: One example of this is the dropout technique. These techniques help prevents overfitting
+
+
+
+
+MISC:
+- Verbose: https://stackoverflow.com/questions/47902295/what-is-the-use-of-verbose-in-keras-while-validating-the-model
+
+shape of data: (n, xi) <-- n is the number of data points and xi is the number of independent variables
+    -for images the shape is actually (num images, length of image, height of image, rgb value). To convert that into (n, xi), you will need to flatten that. 
+        - when flattened it will be (number of image, product of the dimentions of the image(length width, rgb valie))

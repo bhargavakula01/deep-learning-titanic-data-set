@@ -1,0 +1,24 @@
+Machine Learning Notes:
+- Linear Regrsssion: y = wx + b
+- cost: distance of a point from the line of best fit
+- loss: sum of costs
+- symbol for prediction y val: "y with a carrot symbol on top"
+- mean squared error: (summation (cost)^2) / n <-- n is the number of points
+- Overfitting: when trying to minmize the loss, one must make sure that the model isn't overfitting the data. One must minimize loss while preventing overfitting.
+    - program should keep reconfiguring model until there is low loss in training and test data
+
+Logistic Regression vs Linear Regression:
+- Logistic Regression models the probability of binary decision(one where there are 2 outcomes)
+- Linear regression models the relationship between an independent and dependent variable(usually for situations with more than 2 outcomes)
+
+
+Decision tree and Random Forrest:
+- Decision trees are basically flow charts that helps the computer make a Decision
+    - conditional are the nodes
+    - branches are the movement from one conditional to another
+    - leaves are the end decision that occurs affter all conditonals have been executed
+    - https://www.udemy.com/course/unaicorn/learn/lecture/14923922#overview
+    - disadvantage of decision trees is that it is prone to overfitting
+-Random forests are a combination of multiple decision trees and the output is a average of these trees
+    -Adv: less prone to Overfitting
+    - can be a bit confusing
